@@ -1,0 +1,142 @@
+# ################################
+#
+# Authors
+# * Adel Moumen 2024
+# ################################
+
+# Seed needs to be set at top of yaml, before objects with parameters are made
+seed: 1986
+__set_seed: !apply:torch.manual_seed [!ref <seed>]
+
+experiment_folder: !PLACEHOLDER
+experiment_name: wav2vec2-base
+output_folder: !ref <experiment_folder>/<experiment_name>/<seed>
+output_wer_folder: !ref <output_folder>/
+save_folder: !ref <output_folder>/save
+train_log: !ref <output_folder>/train_log.txt
+
+
+# Data files
+data_folder: !PLACEHOLDER # /workspace/SpokenMedicalQA_data/data-30+test/
+train_csv: !ref <data_folder>/MedMCQA_train.csv
+valid_csv: !ref <data_folder>/MedMCQA_validation.csv
+test_csv:
+   - !ref <data_folder>/MMLU_clinical_knowledge_test.csv
+   - !ref <data_folder>/MMLU_medical_genetics_test.csv
+   - !ref <data_folder>/MMLU_anatomy_test.csv
+   - !ref <data_folder>/MMLU_professional_medicine_test.csv
+   - !ref <data_folder>/MMLU_college_biology_test.csv
+   - !ref <data_folder>/MMLU_college_medicine_test.csv
+   - !ref <data_folder>/MedQA_test.csv
+   - !ref <data_folder>/MedMCQA_test.csv
+
+ssl_hub: facebook/wav2vec2-base # facebook/wav2vec2-base facebook/data2vec-audio-base
+ssl_folder: !ref <output_folder>/ssl_checkpoints
+encoder_dim: 768
+freeze: False
+
+# Training parameters
+number_of_epochs: 3
+lr: 5e-5
+lr_weights: 0.01
+sorting: ascending
+precision: fp16
+# label_smoothing: 0.1
+# loss_reduction: batchmean@
+
+
+# With data_parallel batch_size is split into N jobs
+# With DDP batch_size is multiplied by N jobs
+# Must be 3 per GPU to fit 32GB of VRAM
+batch_size: 1
+test_batch_size: 1
+num_workers: 4
+
+# Dataloader options
+train_dataloader_opts:
+   batch_size: !ref <batch_size>
+   num_workers: !ref <num_workers>
+
+valid_dataloader_opts:
+   batch_size: !ref <batch_size>
+
+test_dataloader_opts:
+   batch_size: !ref <test_batch_size>
+   num_workers: !ref <num_workers>
+
+# Model parameters
+activation: !name:torch.nn.Sigmoid
+dnn_layers: 1
+dnn_neurons: 1024
+
+# Outputs
+output_neurons: 4 # A, B, C, and D
+
+# Functions and classes
+#
+epoch_counter: !new:speechbrain.utils.epoch_loop.EpochCounter
+   limit: !ref <number_of_epochs>
+
+weighted_ssl_model: !new:speechbrain.lobes.models.huggingface_transformers.WeightedSSLModel # yamllint disable-line rule:line-length
+   hub: !ref <ssl_hub>
+   save_path: !ref <ssl_folder>
+   freeze: !ref <freeze>
+
+avg_pool: !new:speechbrain.nnet.pooling.StatisticsPooling
+   return_std: False
+
+classifier_lin: !new:speechbrain.nnet.linear.Linear
+   input_size: !ref <encoder_dim>
+   n_neurons: !ref <output_neurons>
+   bias: False
+
+log_softmax: !new:speechbrain.nnet.activations.Softmax
+   apply_log: True
+
+compute_cost: !name:speechbrain.nnet.losses.nll_loss
+
+# seq_cost: !name:speechbrain.nnet.losses.nll_loss
+#     label_smoothing: !ref <label_smoothing>
+#     reduction: !ref <loss_reduction>
+
+modules:
+   classifier_lin: !ref <classifier_lin>
+   weighted_ssl_model: !ref <weighted_ssl_model>
+
+model: !new:torch.nn.ModuleList
+   - [!ref <classifier_lin>]
+
+model_opt_class: !name:torch.optim.Adam
+   lr: !ref <lr>
+
+weights_opt_class: !name:torch.optim.Adam
+   lr: !ref <lr_weights>
+
+lr_annealing_model: !new:speechbrain.nnet.schedulers.NewBobScheduler
+   initial_value: !ref <lr>
+   improvement_threshold: 0.0025
+   annealing_factor: 0.8
+   patient: 0
+
+lr_annealing_weights: !new:speechbrain.nnet.schedulers.NewBobScheduler
+   initial_value: !ref <lr_weights>
+   improvement_threshold: 0.0025
+   annealing_factor: 0.9
+   patient: 0
+
+
+checkpointer: !new:speechbrain.utils.checkpoints.Checkpointer
+   checkpoints_dir: !ref <save_folder>
+   recoverables:
+      model: !ref <model>
+      ssl_model: !ref <weighted_ssl_model>
+      scheduler_model: !ref <lr_annealing_model>
+      scheduler_encoder: !ref <lr_annealing_weights>
+      counter: !ref <epoch_counter>
+
+train_logger: !new:speechbrain.utils.train_logger.FileTrainLogger
+   save_file: !ref <train_log>
+
+error_stats: !name:speechbrain.utils.metric_stats.MetricStats
+    metric: !name:speechbrain.nnet.losses.classification_error
+        reduction: batch

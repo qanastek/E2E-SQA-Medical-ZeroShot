@@ -1,0 +1,182 @@
+{
+    "0": {
+        "voice": "alloy",
+        "ask_option": "The correct answer is option ",
+        "path": "./audios_ask/0.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/0.wav"
+    },
+    "1": {
+        "voice": "alloy",
+        "ask_option": "The correct answer is option A",
+        "path": "./audios_ask/1.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/1.wav"
+    },
+    "2": {
+        "voice": "alloy",
+        "ask_option": "The correct answer is option B",
+        "path": "./audios_ask/2.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/2.wav"
+    },
+    "3": {
+        "voice": "alloy",
+        "ask_option": "The correct answer is option C",
+        "path": "./audios_ask/3.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/3.wav"
+    },
+    "4": {
+        "voice": "alloy",
+        "ask_option": "The correct answer is option D",
+        "path": "./audios_ask/4.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/4.wav"
+    },
+    "5": {
+        "voice": "echo",
+        "ask_option": "The correct answer is option ",
+        "path": "./audios_ask/5.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/5.wav"
+    },
+    "6": {
+        "voice": "echo",
+        "ask_option": "The correct answer is option A",
+        "path": "./audios_ask/6.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/6.wav"
+    },
+    "7": {
+        "voice": "echo",
+        "ask_option": "The correct answer is option B",
+        "path": "./audios_ask/7.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/7.wav"
+    },
+    "8": {
+        "voice": "echo",
+        "ask_option": "The correct answer is option C",
+        "path": "./audios_ask/8.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/8.wav"
+    },
+    "9": {
+        "voice": "echo",
+        "ask_option": "The correct answer is option D",
+        "path": "./audios_ask/9.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/9.wav"
+    },
+    "10": {
+        "voice": "fable",
+        "ask_option": "The correct answer is option ",
+        "path": "./audios_ask/10.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/10.wav"
+    },
+    "11": {
+        "voice": "fable",
+        "ask_option": "The correct answer is option A",
+        "path": "./audios_ask/11.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/11.wav"
+    },
+    "12": {
+        "voice": "fable",
+        "ask_option": "The correct answer is option B",
+        "path": "./audios_ask/12.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/12.wav"
+    },
+    "13": {
+        "voice": "fable",
+        "ask_option": "The correct answer is option C",
+        "path": "./audios_ask/13.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/13.wav"
+    },
+    "14": {
+        "voice": "fable",
+        "ask_option": "The correct answer is option D",
+        "path": "./audios_ask/14.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/14.wav"
+    },
+    "15": {
+        "voice": "onyx",
+        "ask_option": "The correct answer is option ",
+        "path": "./audios_ask/15.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/15.wav"
+    },
+    "16": {
+        "voice": "onyx",
+        "ask_option": "The correct answer is option A",
+        "path": "./audios_ask/16.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/16.wav"
+    },
+    "17": {
+        "voice": "onyx",
+        "ask_option": "The correct answer is option B",
+        "path": "./audios_ask/17.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/17.wav"
+    },
+    "18": {
+        "voice": "onyx",
+        "ask_option": "The correct answer is option C",
+        "path": "./audios_ask/18.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/18.wav"
+    },
+    "19": {
+        "voice": "onyx",
+        "ask_option": "The correct answer is option D",
+        "path": "./audios_ask/19.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/19.wav"
+    },
+    "20": {
+        "voice": "nova",
+        "ask_option": "The correct answer is option ",
+        "path": "./audios_ask/20.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/20.wav"
+    },
+    "21": {
+        "voice": "nova",
+        "ask_option": "The correct answer is option A",
+        "path": "./audios_ask/21.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/21.wav"
+    },
+    "22": {
+        "voice": "nova",
+        "ask_option": "The correct answer is option B",
+        "path": "./audios_ask/22.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/22.wav"
+    },
+    "23": {
+        "voice": "nova",
+        "ask_option": "The correct answer is option C",
+        "path": "./audios_ask/23.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/23.wav"
+    },
+    "24": {
+        "voice": "nova",
+        "ask_option": "The correct answer is option D",
+        "path": "./audios_ask/24.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/24.wav"
+    },
+    "25": {
+        "voice": "shimmer",
+        "ask_option": "The correct answer is option ",
+        "path": "./audios_ask/25.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/25.wav"
+    },
+    "26": {
+        "voice": "shimmer",
+        "ask_option": "The correct answer is option A",
+        "path": "./audios_ask/26.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/26.wav"
+    },
+    "27": {
+        "voice": "shimmer",
+        "ask_option": "The correct answer is option B",
+        "path": "./audios_ask/27.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/27.wav"
+    },
+    "28": {
+        "voice": "shimmer",
+        "ask_option": "The correct answer is option C",
+        "path": "./audios_ask/28.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/28.wav"
+    },
+    "29": {
+        "voice": "shimmer",
+        "ask_option": "The correct answer is option D",
+        "path": "./audios_ask/29.mp3",
+        "path_wav": "./audios_ask_wav_ffmpeg/29.wav"
+    }
+}
